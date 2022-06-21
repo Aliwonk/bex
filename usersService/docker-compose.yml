@@ -1,0 +1,35 @@
+version: '3.0'
+
+services:
+  main_users:
+    container_name: main_users
+    build:
+      context: .
+    env_file:
+      - ./.env
+    volumes:
+      - .:/app
+      - /app/node_modules
+      # - ./sito/db/:/var/lib/mysql
+    ports:
+      - 3000:3000
+    command: npm start
+    depends_on:
+      - db_users
+    restart: always
+  db_users:
+    container_name: db_users
+    restart: always
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=usersservice
+    env_file:
+      - ./database/db.env
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3036:3306"
+
