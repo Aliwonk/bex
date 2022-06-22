@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config({path: 'database/db.env'});
 const db = process.env.DATABASE || 'mysql',
-dbHost = process.env.DB_HOST || 'database',
+dbHost = process.env.DB_HOST || 'localhost',
 dbPort = process.env.DB_PORT || 3306,
 dbName = process.env.DB_NAME || 'recordsservice',
 dbLogin = process.env.DB_LOGIN || 'root',
